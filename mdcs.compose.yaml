@@ -1,0 +1,16 @@
+mongo:
+ image: mongo
+ expose:
+ - "27017"
+ volumes:
+ - /srv/mongo:/data/db
+redis:
+ image: redis
+mdcs:
+ image: wilke/curator:latest
+ links:
+ - redis
+ - mongo
+ ports:
+ - "8081:8000"
+ #command: python manage.py runserver --noreload
